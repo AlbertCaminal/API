@@ -96,7 +96,6 @@ CreateSaleRequest (cos de POST)
 - Mileage (int?, range 0..2_000_000)
 - Price (decimal, range 0..10_000_000)
 
-
 SalesFilter (paràmetres de query per GET list)
 
 - Manufacturer (string?)
@@ -289,13 +288,11 @@ dotnet run
    - El fitxer `CarSales.Api.http` (si s'afegeix)
    - Postman o eines similars
 
-
 ## Provar l'API des de Swagger UI i per línia de comandes
 
 Aquestes instruccions recullen tot el necessari per provar els endpoints (GET, POST, PUT, DELETE) tant des de Swagger UI com amb curl/PowerShell o amb la extensió REST Client de VS Code.
 
 IMPORTANT: Les operacions de modificació (POST, PUT, DELETE) requereixen l'header `X-API-Key` amb una clau vàlida. Revisa `CarSales.Api/appsettings.json` per veure les claus definides a l'entorn local (ex: `albert-dev-1234`). No exposis claus reals en repositoris públics.
-
 
 ### 1) Swagger UI (interactiu)
 
@@ -305,7 +302,6 @@ IMPORTANT: Les operacions de modificació (POST, PUT, DELETE) requereixen l'head
   2. Al camp `Value` introdueix EXACTAMENT la clau (sense cometes): per exemple `albert-dev-1234`.
   3. Prem `Authorize` i tanca el diàleg.
 - Després, obre l'endpoint (ex. `PUT /api/Sales/{id}`), prem `Try it out`, omple els camps i pressiona `Execute`.
-
 
 ### 2) Proves amb curl (PowerShell)
 
@@ -397,11 +393,34 @@ DELETE http://localhost:5058/api/Sales/69
 X-API-Key: albert-dev-1234
 ```
 
-
-## Captures de pantalla 
+## Captures de pantalla
 
 ![Captura 1](images/captura_1.PNG)
 
 ![Captura 2](images/captura_2.PNG)
 
 ![Captura 3](images/captura_3.PNG)
+
+![Captura 4](images/captura_4.PNG)
+
+![Captura 5](images/captura_5.PNG)
+
+![Captura 6](images/captura_6.PNG)
+
+![Captura 7](images/captura_7.PNG)
+
+![Captura 8](images/captura_8.PNG)
+
+![Captura 9](images/captura_9.PNG)
+
+![Captura 10](images/captura_10.PNG)
+
+![Captura 11](images/captura_11.PNG)
+
+![Captura 12](images/captura_12.PNG)
+
+![Captura 13](images/captura_13.PNG)
+
+![Captura 14](images/captura_14.PNG)
+
+![Captura 15](images/captura_15.PNG)
