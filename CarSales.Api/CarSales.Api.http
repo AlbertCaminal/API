@@ -1,0 +1,83 @@
+### CarSales API - Test requests (VS Code REST Client)
+
+# Base URL (adjust if needed)
+@baseUrl = http://localhost:5000
+@apiKey = your_api_key_here
+
+### 1) GET list - default
+GET {{baseUrl}}/api/sales
+
+### 2) GET list - filters, pagination, sort
+GET {{baseUrl}}/api/sales?manufacturer=Toyota&model=Corolla&page=1&pageSize=5&sortBy=price&sortDir=desc
+
+### 3) GET by id (expected not found)
+GET {{baseUrl}}/api/sales/999999
+
+### 4) POST create - missing API key (expect 401)
+POST {{baseUrl}}/api/sales
+Content-Type: application/json
+
+{
+  "manufacturer": "TestMfr",
+  "model": "TestModel",
+  "engineSize": 1.6,
+  "fuelType": "Petrol",
+  "year": 2020,
+  "mileage": 10000,
+  "price": 5000.00
+}
+
+### 5) POST create - invalid API key (expect 403)
+POST {{baseUrl}}/api/sales
+Content-Type: application/json
+X-API-Key: invalid_key
+
+{
+  "manufacturer": "TestMfr",
+  "model": "TestModel",
+  "engineSize": 1.6,
+  "fuelType": "Petrol",
+  "year": 2020,
+  "mileage": 10000,
+  "price": 5000.00
+}
+
+### 6) POST create - valid API key (expect 201 if DB available)
+POST {{baseUrl}}/api/sales
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "manufacturer": "TestMfr",
+  "model": "TestModel",
+  "engineSize": 1.6,
+  "fuelType": "Petrol",
+  "year": 2020,
+  "mileage": 10000,
+  "price": 5000.00
+}
+
+### 7) PUT update - valid API key (replace {id} after create)
+PUT {{baseUrl}}/api/sales/{id}
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "manufacturer": "TestMfr",
+  "model": "TestModel",
+  "engineSize": 1.8,
+  "fuelType": "Petrol",
+  "year": 2020,
+  "mileage": 12000,
+  "price": 4800.00
+}
+
+### 8) DELETE - valid API key (replace {id} after create)
+DELETE {{baseUrl}}/api/sales/{id}
+X-API-Key: {{apiKey}}
+@CarSales.Api_HostAddress = http://localhost:5058
+
+GET {{CarSales.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "7MMLZ5QQvFHH56m5o6tVUz10TI+1uFxzKzTgm26Mcco=",
+  "Source": "CarSales.Api",
+  "BasePath": "_content/CarSales.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
