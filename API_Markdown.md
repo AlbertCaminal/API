@@ -400,5 +400,8 @@ X-API-Key: albert-dev-1234
 
 ## Captures de pantalla 
 
-../images/Captura_1.png
+../images/captura_1.png
 
+./images/captura_2.png
+
+/images/captura_3.png
