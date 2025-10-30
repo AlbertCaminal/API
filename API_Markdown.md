@@ -399,7 +399,7 @@ X-API-Key: albert-dev-1234
 
 ![Captura 1](images/captura_1.PNG)
 
-## GET /API/Sales
+### GET /API/Sales
 
 ![Captura 2](images/captura_2.PNG)
 
@@ -413,25 +413,25 @@ X-API-Key: albert-dev-1234
 
 ![Captura 7](images/captura_7.PNG)
 
-## POST /API/Sales
+### POST /API/Sales
 
 ![Captura 8](images/captura_8.PNG)
 
 ![Captura 9](images/captura_9.PNG)
 
-## GET /API/Sales/{id}
+### GET /API/Sales/{id}
 
 ![Captura 10](images/captura_10.PNG)
 
 ![Captura 11](images/captura_11.PNG)
 
-## PUT /API/Sales/{id}
+### PUT /API/Sales/{id}
 
 ![Captura 12](images/captura_12.PNG)
 
 ![Captura 13](images/captura_13.PNG)
 
-## DELETE /API/Sales/{id}
+### DELETE /API/Sales/{id}
 
 ![Captura 14](images/captura_14.PNG)
 
