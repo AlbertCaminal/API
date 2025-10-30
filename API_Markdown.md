@@ -395,7 +395,7 @@ X-API-Key: albert-dev-1234
 
 ## Captures de pantalla
 
-## Pàgina principal
+### Pàgina principal
 
 ![Captura 1](images/captura_1.PNG)
 
