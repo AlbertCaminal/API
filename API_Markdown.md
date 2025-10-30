@@ -96,9 +96,6 @@ CreateSaleRequest (cos de POST)
 - Mileage (int?, range 0..2_000_000)
 - Price (decimal, range 0..10_000_000)
 
-UpdateSaleRequest
-
-Nota: en el repositori actual el fitxer `UpdateSaleRequest.cs` està buit. S'ha assumit que té la mateixa forma que `CreateSaleRequest`. Recomano verificar i unificar el model si cal.
 
 SalesFilter (paràmetres de query per GET list)
 
@@ -265,7 +262,7 @@ curl -X DELETE "http://localhost:5000/api/sales/123" \
 - 403 Forbidden — API key no vàlida
 - 404 Not Found — recurs no existeix
 
-## Com executar l'API localment (config mínim)
+## Com executar l'API localment
 
 1. Assegura't de tenir .NET SDK (project sembla apuntar a .NET 8/9).
 2. Afegeix/actualitza `appsettings.json` amb la cadena de connexió i les claus:
@@ -292,24 +289,13 @@ dotnet run
    - El fitxer `CarSales.Api.http` (si s'afegeix)
    - Postman o eines similars
 
-## Notes i bones pràctiques
-
-- Confirmar l'estructura de `UpdateSaleRequest` (actualment el fitxer està buit). Si és diferent, actualitza la documentació.
-- Evitar exposar dades sensibles en exemples; utilitzar valors ficticis.
-- Swagger/OpenAPI ja està configurat amb autenticació per API key.
-
-## Resum d'assumpcions fetes
-
-1. `UpdateSaleRequest` es considera igual que `CreateSaleRequest` (el fitxer existent està buit).
-2. L'API s'executa per defecte a `http://localhost:5000` en els exemples; el port es pot ajustar segons l'entorn.
-
----
 
 ## Provar l'API des de Swagger UI i per línia de comandes
 
 Aquestes instruccions recullen tot el necessari per provar els endpoints (GET, POST, PUT, DELETE) tant des de Swagger UI com amb curl/PowerShell o amb la extensió REST Client de VS Code.
 
 IMPORTANT: Les operacions de modificació (POST, PUT, DELETE) requereixen l'header `X-API-Key` amb una clau vàlida. Revisa `CarSales.Api/appsettings.json` per veure les claus definides a l'entorn local (ex: `albert-dev-1234`). No exposis claus reals en repositoris públics.
+
 
 ### 1) Swagger UI (interactiu)
 
@@ -320,9 +306,6 @@ IMPORTANT: Les operacions de modificació (POST, PUT, DELETE) requereixen l'head
   3. Prem `Authorize` i tanca el diàleg.
 - Després, obre l'endpoint (ex. `PUT /api/Sales/{id}`), prem `Try it out`, omple els camps i pressiona `Execute`.
 
-Si reps `401 Missing X-API-Key header.`: vol dir que la petició no porta cap header `X-API-Key`. En aquest cas comprova DevTools (F12) -> Network -> selecciona la petició -> Request Headers i busca `X-API-Key`.
-
-Si reps `403 Invalid API key.`: el header arriba però la clau no coincideix exactament amb les definides a `appsettings.json` (comparació actual és case-sensitive). Pots canviar-ho a `StringComparer.OrdinalIgnoreCase` a `ApiKeyAuthFilter` si vols tolerància de majúsc./minús.
 
 ### 2) Proves amb curl (PowerShell)
 
@@ -414,23 +397,8 @@ DELETE http://localhost:5058/api/Sales/69
 X-API-Key: albert-dev-1234
 ```
 
-### 4) Troubleshooting i errors comuns
 
-- 401 Unauthorized / Missing X-API-Key header: la petició no porta l'header. Solucions:
+## Captures de pantalla 
 
-  - Torna a prémer `Authorize` a Swagger i enganxa la clau exactament.
-  - Obre DevTools (F12) → Network → inspecciona la petició → comprova Request Headers.
+../images/captura_1.png
 
-- 403 Forbidden / Invalid API key: l'header arriba però la clau no coincideix amb `appsettings.json` (compara exactament). Revisar l'array `ApiKeys` a `appsettings.json`.
-
-- Connection is not open / BeginTransaction exceptions: indica que el codi crida `BeginTransaction()` en una connexió no oberta. La versió actual del repositori ja obre la connexió abans de crear la transacció (`OpenAsync`) per evitar aquest error; reinicia l'app després de construir.
-
-- Errors de base de dades (no connecta): comprova que MySQL estigui en marxa i que la cadena de connexió `ConnectionStrings:CarSalesDb` sigui correcta (host, port, usuari, password, nom de la BD).
-
-### 5) Notes d'implementació i suggeriments
-
-- Swagger / Swashbuckle: el `Program.cs` inclou una definició de seguretat per `X-API-Key` i un `SecurityRequirement` que referencia la definició — això fa que Swagger UI mostri el botó `Authorize` i adjunti el header quan l'usuari l'autoritza.
-- Claus API: per entorns de producció NO guardis claus en text pla a `appsettings.json`; usa secrets manager o variables d'entorn.
-- Tests: recomano crear un petit fitxer d'integració (xUnit) que faci proves de GET i, per entorns de prova controlat, POST/PUT/DELETE amb una base de dades de test o una transacció rollback per evitar pol·lució de dades.
-
-Fi del document
